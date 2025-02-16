@@ -7,7 +7,7 @@ export default class FindAllProductUsecase implements UseCaseInterface {
     async execute() {
         const products = await this.productRepository.findAll();
 
-        return products.map(product => ({
+        return  products.map(product => ({
             id: product.id.id,
             name: product.name,
             description: product.description,
