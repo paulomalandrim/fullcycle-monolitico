@@ -24,7 +24,7 @@ describe("Invoice Facade test", () => {
         await sequelize.close();
     });
 
-    it("should create a client", async () => {
+    it("should generate an invoice", async () => {
 
         const invoiceFacade = InvoiceFacadeFactory.create();
  
@@ -53,21 +53,21 @@ describe("Invoice Facade test", () => {
 
         const result = await invoiceFacade.generate(input);
 
-        const invoiceFound = await InvoiceModel.findOne({where: {id: result.id}, include: [InvoiceItemModel]});
-        expect(invoiceFound).not.toBeNull();
-        expect(invoiceFound.name).toBe(input.name);
-        expect(invoiceFound.document).toBe(input.document);
-        expect(invoiceFound.street).toBe(input.street);
-        expect(invoiceFound.number).toBe(input.number);
-        expect(invoiceFound.complement).toBe(input.complement);
-        expect(invoiceFound.city).toBe(input.city);
-        expect(invoiceFound.state).toBe(input.state);
-        expect(invoiceFound.zipCode).toBe(input.zipCode);
-        expect(invoiceFound.items.length).toBe(input.items.length);
-        expect(invoiceFound.items[0].name).toBe(input.items[0].name);
-        expect(invoiceFound.items[0].price).toBe(input.items[0].price);
-        expect(invoiceFound.items[1].name).toBe(input.items[1].name);
-        expect(invoiceFound.items[1].price).toBe(input.items[1].price);
+        expect(result).not.toBeNull();
+        expect(result.name).toBe(input.name);
+        expect(result.document).toBe(input.document);
+        expect(result.street).toBe(input.street);
+        expect(result.number).toBe(input.number);
+        expect(result.complement).toBe(input.complement);
+        expect(result.city).toBe(input.city);
+        expect(result.state).toBe(input.state);
+        expect(result.zipCode).toBe(input.zipCode);
+        expect(result.items.length).toBe(input.items.length);
+        expect(result.items[0].name).toBe(input.items[0].name);
+        expect(result.items[0].price).toBe(input.items[0].price);
+        expect(result.items[1].name).toBe(input.items[1].name);
+        expect(result.items[1].price).toBe(input.items[1].price);
+        expect(result.total).toBe(300);
         
     });
 
@@ -116,6 +116,7 @@ describe("Invoice Facade test", () => {
         expect(invoiceFound.items[0].price).toBe(input.items[0].price);
         expect(invoiceFound.items[1].name).toBe(input.items[1].name);
         expect(invoiceFound.items[1].price).toBe(input.items[1].price);
+        expect(invoiceFound.total).toBe(300);
         
     });
 })
