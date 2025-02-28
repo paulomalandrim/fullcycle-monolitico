@@ -1,5 +1,5 @@
 import Id from "../../@shared/domain/value-object/id.value-object";
-import InvoiceItem from "./invoice-item";
+import InvoiceItem from "./invoice-item.entity";
 
 describe("Invoice Item Unit test", () => {
 

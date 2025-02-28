@@ -1,7 +1,7 @@
 import Address from "../../@shared/domain/value-object/address.value-object";
 import Id from "../../@shared/domain/value-object/id.value-object";
-import Invoice from "./invoice";
-import InvoiceItem from "./invoice-item";
+import Invoice from "./invoice.entity";
+import InvoiceItem from "./invoice-item.entity";
 
 describe("Invoice unit test", () => {
 
