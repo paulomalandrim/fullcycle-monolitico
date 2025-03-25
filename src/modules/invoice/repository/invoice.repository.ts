@@ -53,6 +53,7 @@ export default class InvoiceRepository implements InvoiceGateway {
             name: result.name,
             document: result.document,
             address: new Address(
+                    new Id(result.id),
                     result.street,
                     result.number,
                     result.complement,
@@ -91,6 +92,7 @@ export default class InvoiceRepository implements InvoiceGateway {
             name: result.name,
             document: result.document,
             address: new Address(
+                 new Id(result.id),
                  result.street,
                  result.number,
                  result.complement,

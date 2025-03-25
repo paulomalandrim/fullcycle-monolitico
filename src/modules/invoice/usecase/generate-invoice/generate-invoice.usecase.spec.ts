@@ -8,7 +8,7 @@ const invoice = new Invoice({
     id: new Id('112233'),
     name: 'John Doe',
     document: '123456789',
-    address: new Address('Rua 1', '123', 'Casa', 'São Paulo', 'SP', '12345678'), // value object
+    address: new Address(new Id('1'), 'Rua 1', '123', 'Casa', 'São Paulo', 'SP', '12345678'), // value object
     items: [ 
         new InvoiceItem({ name: 'Product 1', price: 100 }),
         new InvoiceItem({ name: 'Product 2', price: 200 }),

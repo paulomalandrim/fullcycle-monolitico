@@ -1,7 +1,7 @@
 import Address from "../../@shared/domain/value-object/address.value-object";
-import Id from "../../@shared/domain/value-object/id.value-object";
 import Invoice from "./invoice.entity";
 import InvoiceItem from "./invoice-item.entity";
+import Id from "../../@shared/domain/value-object/id.value-object";
 
 describe("Invoice unit test", () => {
 
@@ -10,7 +10,7 @@ describe("Invoice unit test", () => {
         const props = {
             name: 'John Doe',
             document: '123456789',
-            address: new Address('Rua 1', '123', 'Casa', 'São Paulo', 'SP', '12345678'), // value object
+            address: new Address(new Id("1"),'Rua 1', '123', 'Casa', 'São Paulo', 'SP', '12345678'), // value object
             items: [ new InvoiceItem({ name: 'Product 1', price: 100 })], // Invoice Items entity
         };
 

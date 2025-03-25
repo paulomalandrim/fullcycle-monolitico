@@ -1,4 +1,5 @@
-import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BelongsTo, Column, ForeignKey, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import AddressModel from "../../@shared/respository/address.model";
 
 @Table({ tableName: "client", timestamps: false })
 export default class ClientModel extends Model {
@@ -12,8 +13,12 @@ export default class ClientModel extends Model {
     @Column
     declare email: string;
 
-    @Column
-    declare address: string;
+    @ForeignKey(() => AddressModel)
+    @Column({ allowNull: false })
+    declare addressId: string;
+
+    @BelongsTo(() => AddressModel)
+    declare address: AddressModel;    
 
     @Column
     declare createdAt: Date;

@@ -1,6 +1,8 @@
+import BaseEntity from "../entity/base.entity";
+import Id from "./id.value-object";
 import ValueObject from "./value-object.interface";
 
-export default class Address implements ValueObject {
+export default class Address extends BaseEntity implements ValueObject {
     private _street: string;
     private _number: string;
     private _complement: string;
@@ -8,13 +10,16 @@ export default class Address implements ValueObject {
     private _state: string;
     private _zipCode: string;
 
-    constructor(street: string,
+    constructor(
+        id: Id,
+        street: string,
         number: string,
         complement: string,
         city: string,
         state: string,
         zipCode: string
-    ) {
+    ){
+        super(id);
         this._street = street;
         this._number = number;
         this._complement = complement;

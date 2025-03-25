@@ -30,6 +30,7 @@ describe("Invoice Repository test", () => {
     it("should generate an invoice", async () => {
         
         const addressInvoice = new Address(
+            new Id('1'),
             'Rua 1',
             '123',
             'Casa',
@@ -77,6 +78,7 @@ describe("Invoice Repository test", () => {
     it("should find an invoice", async () => {
         
         const addressInvoice = new Address(
+            new Id('1'),
             'Rua 1',
             '123',
             'Casa',

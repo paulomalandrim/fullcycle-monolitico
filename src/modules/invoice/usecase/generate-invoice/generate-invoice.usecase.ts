@@ -1,4 +1,5 @@
 import Address from "../../../@shared/domain/value-object/address.value-object";
+import Id from "../../../@shared/domain/value-object/id.value-object";
 import InvoiceItem from "../../domain/invoice-item.entity";
 import Invoice from "../../domain/invoice.entity";
 import InvoiceGateway from "../../gateway/invoice.gateway";
@@ -15,7 +16,8 @@ export default class GenerateInvoiceUsecase {
     async execute(input: GenerateInvoiceUseCaseInputDto): Promise<GenerateInvoiceUseCaseOutputDto> {
 
 
-        const inputAddress = new Address( input.street,
+        const inputAddress = new Address( new Id(),
+                                            input.street,
                                           input.number,
                                             input.complement,
                                             input.city,
