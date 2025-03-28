@@ -56,7 +56,8 @@ export default class ClientRepository implements ClientGateway {
             foundAddress.state,
             foundAddress.zipCode,
         );
-       
+
+
         return new Client({
             id: new Id(foundClient.id),
             name: foundClient.name,

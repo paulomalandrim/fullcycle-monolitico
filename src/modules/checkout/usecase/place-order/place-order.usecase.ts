@@ -64,17 +64,10 @@ export default class PlaceOrderUseCase implements UseCaseInterface{
             products,
         })
 
-        console.log("Order total: " + order.total);
-        
-
         const payment = await this._paymentFacade.process({
             orderId: order.id.id,
             amount: order.total,
         });
-        
-
-        console.log("Payment status: " + payment.status);
-
         
         const invoice = 
             payment.status === "approved"
@@ -97,8 +90,6 @@ export default class PlaceOrderUseCase implements UseCaseInterface{
         payment.status === "approved" && order.aproved();
 
         await this._repository.addOrder(order);
-
-
 
 
         // mudar o status da minha order para approved

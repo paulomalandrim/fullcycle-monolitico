@@ -3,6 +3,7 @@ import { PlaceOrderInputDto } from "./place-order.dto";
 import PlaceOrderUseCase from "./place-order.usecase";
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import Product from "../../domain/product.entity";
+import Address from "../../../@shared/domain/value-object/address.value-object";
 
 const mockDate = new Date(2022, 1, 1);
 
@@ -202,13 +203,8 @@ describe('PlaceOrderUsecase unit test', () => {
         const clientProps = {
             id: new Id("1"),
             name: 'Test',
-            email: 'aaa@email.com',
-            street: 'street 1',
-            number: '123',
-            complement: 'complement 1',
-            city: 'city 1',
-            state: 'state 1',
-            zipCode: '123',
+            document: '123456789',
+            address: new Address(new Id("1"), "Rua 1", "123", "Casa", "São Paulo", "SP", "12345678"),
         };
 
         const mockClientFacade = {
@@ -329,20 +325,29 @@ describe('PlaceOrderUsecase unit test', () => {
             expect(mockClientFacade.find).toHaveBeenCalledWith({id: "1"});
             expect(mockValidadeProducts).toHaveBeenCalledTimes(1);
             expect(mockValidadeProducts).toHaveBeenCalledWith(input);
-            
             expect(mockGetProduct).toHaveBeenCalledTimes(2);
             expect(mockCheckoutRepo.addOrder).toHaveBeenCalledTimes(1);
-
             expect(mockPaymentFacade.process).toHaveBeenCalledTimes(1);
-
             expect(mockPaymentFacade.process).toHaveBeenCalledWith({
                 orderId: output.id,
                 amount: output.total,
             });
-
             expect(mockInvoiceFacade.generate).toHaveBeenCalledTimes(1);
-            expect(mockInvoiceFacade.generate).toHaveBeenCalledWith({orderId: output.id});
-
+            expect(mockInvoiceFacade.generate).toHaveBeenCalledWith({
+                name: clientProps.name,
+                document: clientProps.document,
+                street: clientProps.address.street,
+                number: clientProps.address.number,
+                complement: clientProps.address.complement,
+                city: clientProps.address.city,
+                state: clientProps.address.state,
+                zipCode: clientProps.address.zipCode,
+                items: [
+                    {id: "1", name: "Product 1", price: 100},
+                    {id: "2", name: "Product 2", price: 200},
+                ],
+            });
+            
         });
             
 
